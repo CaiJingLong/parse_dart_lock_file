@@ -12,10 +12,10 @@ func main() {
 
 	var filepath string
 
-	if len(args) == 0 {
+	if len(args) == 1 {
 		filepath = "pubspec.lock"
 	} else {
-		filepath = args[0]
+		filepath = args[1]
 	}
 
 	params := make(map[string]interface{})
