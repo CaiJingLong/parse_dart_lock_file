@@ -4,11 +4,22 @@ import (
 	"fmt"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
+	"os"
 )
 
 func main() {
+	args := os.Args
+
+	var filepath string
+
+	if len(args) == 0 {
+		filepath = "pubspec.lock"
+	} else {
+		filepath = args[0]
+	}
+
 	params := make(map[string]interface{})
-	bytes, _ := ioutil.ReadFile("/Users/caijinglong/Documents/GitHub/flutter_ijkplayer/example/pubspec.lock")
+	bytes, _ := ioutil.ReadFile(filepath)
 	_ = yaml.Unmarshal(bytes, &params)
 
 	packages := params["packages"].(map[interface{}]interface{})
