@@ -18,6 +18,17 @@ func main() {
 		filepath = args[1]
 	}
 
+	info, e := os.Stat(filepath)
+	if e != nil {
+		fmt.Println(e.Error())
+		return
+	}
+
+	if info.IsDir() {
+		fmt.Printf("%s is a dir\n", filepath)
+		return
+	}
+
 	params := make(map[string]interface{})
 	bytes, _ := ioutil.ReadFile(filepath)
 	_ = yaml.Unmarshal(bytes, &params)
